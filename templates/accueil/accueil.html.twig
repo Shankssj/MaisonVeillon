@@ -1,0 +1,474 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<section id="backgroung-home">
+		<div class="background-home">
+			<img class="img-home" src="https://i.postimg.cc/TYGSz8vY/La-Guitti-re.jpg" alt="Plage de la guittière Talmont Saint Hilaire">
+			<div class="home-title">
+				<h1>Votre Escapade Vendéenne</h1>
+			</div>
+			<div class="scroll-arrow">
+				&#8595;
+				<!-- Flèche vers le bas Unicode -->
+			</div>
+		</div>
+	</section>
+
+	<section id="presentation">
+		<div class="container">
+			<h2 class="section-title">Votre séjour commence ici, bienvenue !</h2>
+			<p class="section-subtitle">
+				Découvrez notre charmante maison de vacances à Talmont Saint Hilaire, où confort et convivialité se rencontrent pour créer des souvenirs inoubliables.
+			</p>
+
+			<div class="presentation-grid">
+
+				<div class="presentation-card reveal-left">
+					<img src="https://i.postimg.cc/C1S1zjPV/maison-exterieur-rogner.jpg" alt="Vue extérieure" class="card-img">
+					<div class="card-content">
+						<h3>À propos de la maison</h3>
+						<p>
+							Située à seulement 5 minutes des plages de sable fin, notre maison offre 2 chambres spacieuses, une cuisine équipée, un salon cosy et un jardin privé.
+						</p>
+					</div>
+				</div>
+
+
+				<div class="presentation-card reveal-right">
+					<img src="https://i.postimg.cc/02t2H0Kj/Terasse.jpg" alt="Terrasse extérieure" class="card-img">
+					<div class="card-content">
+						<h3>Détente au soleil</h3>
+						<p>
+							Profitez d’une terrasse ensoleillée pour vos repas en plein air, vos moments de détente ou un apéritif au coucher du soleil.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="detail-maison">
+		<div class="row">
+			<div id="titre_presentation">
+				<h3>Venez découvrir l'intérieur</h3>
+				<div class="trait-design"></div>
+			</div>
+		</div>
+		<div class="row mes-cards">
+			{% for piece in leDetail %}
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-imgs carousel" data-piece="{{ loop.index }}">
+							{% set photos = piece.getPhotos() %}
+							{% if photos|length > 0 %}
+								<img class="card-img" src="{{ photos[0].getLienPhoto() }}" alt="Photo de {{ piece.getNomPiece() }}">
+								<div class="carousel-controls">
+									<button class="carousel-btn prev" data-piece="{{ loop.index }}" aria-label="Précédent">
+										<span>&#10094;</span>
+									</button>
+									<span class="carousel-indicator">
+										<span class="current-index">1</span>/<span class="total-index">{{ photos|length }}</span>
+									</span>
+									<button class="carousel-btn next" data-piece="{{ loop.index }}" aria-label="Suivant">
+										<span>&#10095;</span>
+									</button>
+								</div>
+							{% endif %}
+						</div>
+						<div class="card-details">
+							<h4 class="card-title">{{ piece.getNomPiece() }}</h4>
+							<p class="text-title">{{ piece.getDescriptionPiece() }}</p>
+						</div>
+						 <script type="application/json" id="photos-{{ loop.index }}">
+																																																																																				                    {{ photos|map(p => p.getLienPhoto())|json_encode|raw }}
+																																																																																				                </script>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+	<style>
+
+		/* Section background-home */
+		.background-home {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.img-home {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			filter: brightness(70%);
+		}
+
+		.home-title h1 {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: white;
+			text-align: center;
+			font-size: 5rem;
+			font-family: 'Pacifico', cursive;
+		}
+
+		.scroll-arrow {
+			position: absolute;
+			bottom: 50px;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 5rem;
+			color: white;
+			opacity: 0.8;
+			animation: bounce 1s infinite;
+			z-index: 2;
+		}
+
+		@keyframes bounce {
+			0,
+			100% {
+				transform: translateX(-50%) translateY(0);
+			}
+			50% {
+				transform: translateX(-50%) translateY(15px);
+			}
+		}
+		/* Fin Section background-home */
+
+		/* Section presentation */
+		.row {
+			display: flex;
+			align-items: center;
+			gap: 40px;
+			margin-bottom: 80px;
+		}
+		/* --- Section Présentation --- */
+		#presentation {
+			padding: 100px 20px;
+			background: linear-gradient(180deg, #fdfdfd 0%, #f7f9fb 100%);
+			position: relative;
+		}
+
+		.section-title {
+			font-size: 3rem;
+			font-family: 'Pacifico', cursive;
+			color: #0077b6;
+			text-align: center;
+			margin-bottom: 15px;
+		}
+
+		.section-subtitle {
+			max-width: 800px;
+			margin: 0 auto 60px;
+			text-align: center;
+			font-size: 1.3rem;
+			color: #444;
+			font-family: 'Montserrat', sans-serif;
+			line-height: 1.6;
+		}
+
+		/* Grille des cartes */
+		.presentation-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+			gap: 50px;
+			align-items: stretch;
+			justify-items: center;
+		}
+
+		/* Carte */
+		.presentation-card {
+			backdrop-filter: blur(10px);
+			background: rgba(255, 255, 255, 0.85);
+			border-radius: 24px;
+			box-shadow: 0 8px 24px rgba(0, 119, 182, 0.08), 0 4px 12px rgba(255, 34, 119, 0.08);
+			overflow: hidden;
+			transition: transform 0.35s ease, box-shadow 0.35s ease;
+			max-width: 480px;
+		}
+
+		.presentation-card:hover {
+			transform: translateY(-12px) scale(1.02);
+			box-shadow: 0 16px 36px rgba(0, 119, 182, 0.15), 0 6px 20px rgba(255, 34, 119, 0.12);
+		}
+
+		/* Image */
+		.card-img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			border-bottom: 4px solid #0077b6;
+		}
+
+		/* Contenu */
+		.card-content {
+			padding: 28px;
+			text-align: left;
+		}
+
+		.card-content h3 {
+			font-size: 1.8rem;
+			font-family: 'Fredoka', sans-serif;
+			color: #ff2277;
+			margin-bottom: 15px;
+		}
+
+		.card-content p {
+			font-size: 1.1rem;
+			line-height: 1.6;
+			font-family: 'Montserrat', sans-serif;
+			color: #333;
+		}
+
+		/* Animation reveal gauche/droite */
+		.reveal-left,
+		.reveal-right {
+			opacity: 0;
+			transform: translateX(60px);
+			animation: reveal 1s ease forwards;
+		}
+
+		.reveal-left {
+			transform: translateX(-60px);
+		}
+
+		@keyframes reveal {
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+
+		/* Responsive */
+		@media(max-width: 768px) {
+			.section-title {
+				font-size: 2.2rem;
+			}
+
+			.section-subtitle {
+				font-size: 1.1rem;
+				padding: 0 10px;
+			}
+
+			.card-content h3 {
+				font-size: 1.5rem;
+			}
+
+			.card-content p {
+				font-size: 1rem;
+			}
+		}
+
+		/* Fin Section presentation */
+
+		/* Section Détails maison */
+		#detail-maison {
+			padding: 60px 20px;
+			background-color: #ffffff;
+			text-align: center;
+		}
+		#detail-maison h3 {
+			font-size: 3.5rem;
+			color: #0077b6;
+			font-family: 'Pacifico', cursive;
+			margin-bottom: 20px;
+		}
+
+		.col-md-6 {
+			flex: 0 0 48%;
+			max-width: 48%;
+			margin-bottom: 40px;
+		}
+
+		.mes-cards {
+			justify-content: center;
+			gap: 30px;
+			align-items: stretch;
+		}
+
+		.card {
+			background: linear-gradient(135deg, #f8f9fa 80%, #e3f2fd 100%);
+			border-radius: 32px;
+			box-shadow: 0 6px 24px rgba(0, 119, 182, 0.07), 0 1.5px 6px rgba(255, 34, 119, 0.07);
+			padding: 32px 24px 24px;
+			text-align: center;
+			min-height: 420px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			height: 100%;
+			box-sizing: border-box;
+			border: none;
+			transition: transform 0.3s cubic-bezier(0.4,2,0.3,1), box-shadow 0.3s, background 0.3s;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.card:hover {
+			transform: translateY(-12px) scale(1.03);
+			box-shadow: 0 16px 32px rgba(0, 119, 182, 0.13), 0 4px 16px rgba(255, 34, 119, 0.13);
+			background: linear-gradient(135deg, #e3f2fd 60%, #f8f9fa 100%);
+		}
+
+		.card-imgs {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 18px;
+		}
+
+		.card-img {
+			width: 90%;
+
+
+			border-radius: 24px;
+			object-fit: cover;
+			box-shadow: 0 4px 16px rgba(0, 119, 182, 0.09);
+			margin-bottom: 18px;
+			transition: box-shadow 0.3s;
+		}
+
+		.card:hover .card-img {
+			box-shadow: 0 8px 32px rgba(255, 34, 119, 0.13);
+		}
+
+		.carousel-controls {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 18px;
+			margin-top: 12px;
+		}
+
+		.carousel-btn {
+			background: #fff;
+			color: #0077b6;
+			border: 2px solid #0077b6;
+			border-radius: 50%;
+			width: 38px;
+			height: 38px;
+			font-size: 1.7rem;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+			transition: background 0.2s, color 0.2s, border 0.2s;
+		}
+		.carousel-btn:hover {
+			background: #0077b6;
+			color: #fff;
+
+		}
+
+		.carousel-indicator {
+			font-size: 1.1rem;
+			color: #0077b6;
+			font-family: 'Fredoka', sans-serif;
+			min-width: 48px;
+			text-align: center;
+		}
+
+		.card-title {
+			text-align: center;
+			font-size: 2.5rem;
+			color: #ff2277ff;
+			margin-top: 18px;
+			margin-bottom: 10px;
+			font-family: 'Fredoka', sans serif;
+		}
+		.text-title {
+			font-size: 1.2rem;
+			color: #000;
+			flex-grow: 1;
+			font-family: 'monserrat', sans-serif;
+			text-align: center;
+		}
+
+		@media(max-width: 900px) {
+			.row {
+				flex-direction: column !important;
+				gap: 24px;
+				align-items: stretch;
+			}
+			.col,
+			.col-md-6 {
+				max-width: 100% !important;
+				width: 100% !important;
+				flex: 1 1 100% !important;
+				margin-bottom: 24px;
+			}
+		}
+
+		@media(max-width: 1200px) {
+			.row {
+				flex-direction: column !important;
+				gap: 24px;
+				align-items: stretch;
+			}
+			.col,
+			.col-md-6 {
+				max-width: 100% !important;
+				width: 100% !important;
+				flex: 1 1 100% !important;
+				margin-bottom: 24px;
+			}
+		}
+
+
+		/* Fin Section Détails maison */
+	</style>
+
+	 <script>
+												document.addEventListener("DOMContentLoaded", function() {
+												    document.querySelectorAll('.carousel').forEach(function(carousel) {
+												        const pieceId = carousel.getAttribute('data-piece');
+												        const photosData = document.getElementById('photos-' + pieceId);
+												        if (!photosData) return;
+												        const photos = JSON.parse(photosData.textContent);
+												        let current = 0;
+												        const img = carousel.querySelector('.card-img');
+												        const prevBtn = carousel.querySelector('.prev');
+												        const nextBtn = carousel.querySelector('.next');
+												        const currentIndexSpan = carousel.querySelector('.current-index');
+												        const totalIndexSpan = carousel.querySelector('.total-index');
+												        if (totalIndexSpan) totalIndexSpan.textContent = photos.length;
+												
+												        function updateImg(nextIdx) {
+												            img.style.opacity = 0.4;
+												            setTimeout(() => {
+												                img.src = photos[nextIdx];
+												                img.style.opacity = 1;
+												            }, 200);
+												            if (currentIndexSpan) currentIndexSpan.textContent = nextIdx + 1;
+												        }
+												
+												        if (prevBtn && nextBtn && photos.length > 1) {
+												            prevBtn.addEventListener('click', function(e) {
+												                e.preventDefault();
+												                current = (current - 1 + photos.length) % photos.length;
+												                updateImg(current);
+												            });
+												            nextBtn.addEventListener('click', function(e) {
+												                e.preventDefault();
+												                current = (current + 1) % photos.length;
+												                updateImg(current);
+												            });
+												        } else {
+												            if (prevBtn) prevBtn.style.display = 'none';
+												            if (nextBtn) nextBtn.style.display = 'none';
+												            if (carousel.querySelector('.carousel-indicator')) carousel.querySelector('.carousel-indicator').style.display = 'none';
+												        }
+												    });
+												});
+								</script>
+	{% include 'footer.html.twig' %}
+{% endblock %}

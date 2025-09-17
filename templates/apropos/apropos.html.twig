@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos
+{% endblock %}
+
+{% block body %}
+	<section id="apropos-hotes">
+		<div class="apropos-container">
+			<h2 class="apropos-title">À propos de nous</h2>
+			<div class="trait-design"></div>
+			<div class="apropos-row">
+				<div class="apropos-photo-block">
+					<img src="https://i.postimg.cc/3Jw9Yw6V/hote-maison.jpg" alt="Photo des hôtes" class="apropos-photo">
+				</div>
+				<div class="apropos-text-block">
+					<h3 class="apropos-nom">Christian et Carole</h3>
+					<p>
+						Nous avons à cœur de vous offrir une expérience authentique et conviviale dans notre maison de vacances, où le confort et le bien-être de nos hôtes sont notre priorité.
+						<br><br>
+						Nous aimons partager nos bonnes adresses, nos conseils pour découvrir la région et veillons à ce que chaque séjour soit unique et confortable.
+						<br><br>
+						N’hésitez pas à nous contacter pour toute question ou demande particulière : nous sommes disponibles et à l’écoute pour rendre votre séjour inoubliable !
+					</p>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		#apropos-hotes {
+			background: linear-gradient(120deg, #e3f2fd 0%, #fafaf8 100%);
+			padding: 60px 0 80px;
+		}
+		.apropos-container {
+			max-width: 950px;
+			margin: 0 auto;
+			background: #fff;
+			border-radius: 32px;
+			box-shadow: 0 8px 32px rgba(0, 119, 182, 0.07);
+			padding: 48px 32px;
+			text-align: center;
+		}
+		.apropos-title {
+			font-size: 2.7rem;
+			color: #0077b6;
+			font-family: 'Pacifico', cursive;
+			margin-bottom: 10px;
+		}
+		.trait-design {
+			width: 80px;
+			height: 4px;
+			background: linear-gradient(90deg, #0077b6 0%, #ff2277ff 100%);
+			border-radius: 2px;
+			margin: 20px auto 30px;
+		}
+		.apropos-row {
+			display: flex;
+			align-items: center;
+			gap: 40px;
+			margin-top: 30px;
+			justify-content: center;
+		}
+		.apropos-photo-block {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+		}
+		.apropos-photo {
+			width: 90%;
+			max-width: 320px;
+			border-radius: 50%;
+			box-shadow: 0 4px 24px rgba(0, 119, 182, 0.13);
+			transition: transform 0.3s, box-shadow 0.3s;
+			object-fit: cover;
+		}
+		.apropos-photo:hover {
+			transform: scale(1.04);
+			box-shadow: 0 12px 32px rgba(255, 34, 119, 0.13);
+		}
+		.apropos-text-block {
+			flex: 2;
+			background: rgba(255, 255, 255, 0.85);
+			border-radius: 18px;
+			padding: 32px 24px;
+			box-shadow: 0 2px 8px rgba(0, 119, 182, 0.05);
+			text-align: left;
+		}
+		.apropos-nom {
+			font-size: 2rem;
+			color: #ff2277ff;
+			font-family: 'Fredoka', sans-serif;
+			margin-bottom: 18px;
+			text-align: left;
+		}
+		
+		@media(max-width: 900px) {
+			.apropos-row {
+				flex-direction: column;
+				gap: 24px;
+			}
+			.apropos-text-block {
+				text-align: center;
+				padding: 24px 10px;
+			}
+			.apropos-photo {
+				max-width: 180px;
+			}
+		}
+	</style>
+    {% include 'footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarifs
+{% endblock %}
+
+{% block body %}
+	<section id="tarifs-airbnb">
+		<div class="tarifs-container">
+			<h2 class="tarifs-title">Tarifs & Disponibilités</h2>
+			<div class="trait-design"></div>
+			<p class="tarifs-intro">
+				Réservez votre séjour en Vendée au meilleur prix.<br>
+				Les tarifs varient selon la saison et la durée du séjour.
+			</p>
+			<div class="tarifs-table">
+				<table>
+					<thead>
+						<tr>
+							<th>Saison</th>
+							<th>Période</th>
+							<th>Prix / nuit*</th>
+							<th>Prix / semaine*</th>
+							<th>Durée min.</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Basse saison</td>
+							<td>Octobre à Mai</td>
+							<td>57 €</td>
+							<td>399 €</td>
+							<td>2 nuits</td>
+						</tr>
+						<tr>
+							<td>Moyenne saison</td>
+							<td>Juin, Septembre</td>
+							<td>67 €</td>
+							<td>469 €</td>
+							<td>2 nuits</td>
+						</tr>
+						<tr>
+							<td>Haute saison</td>
+							<td>Juillet & Août</td>
+							<td>89~140 €</td>
+							<td>623~980 €</td>
+							<td>5 nuits</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tarifs-details">
+				<ul>
+					<li>
+						<strong>Frais de ménage :</strong>
+						de 19€ à 59€ (hors cuisine)</li>
+					<li>
+						<strong>Arrivée :</strong>
+						à partir de 15h</li>
+					<li>
+						<strong>Départ :</strong>
+						avant 10h</li>
+					<li>
+						<strong>Annulation :</strong>
+						gratuite jusqu’à 5 jours avant l’arrivée</li>
+				</ul>
+				<a href="https://www.airbnb.fr/rooms/1393523292011290943" class="btn-reserve">Réserver</a>
+			</div>
+			<div class="tarifs-note">
+				<span>Pour les disponibilités en temps réel, consultez notre annonce sur
+					<a href="https://www.airbnb.fr/rooms/1393523292011290943" target="_blank">Airbnb</a>.
+					<br>*Hors frais de réservation et taxe de séjour</span>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		#tarifs-airbnb {
+			background: linear-gradient(120deg, #e3f2fd 0%, #fafaf8 100%);
+			padding: 60px 0 80px;
+		}
+		.tarifs-container {
+			max-width: 900px;
+			margin: 0 auto;
+			background: #fff;
+			border-radius: 32px;
+			box-shadow: 0 8px 32px rgba(0, 119, 182, 0.07);
+			padding: 48px 32px;
+			text-align: center;
+		}
+		.tarifs-title {
+			font-size: 2.7rem;
+			color: #0077b6;
+			font-family: 'Pacifico', cursive;
+			margin-bottom: 10px;
+		}
+		.trait-design {
+			width: 80px;
+			height: 4px;
+			background: linear-gradient(90deg, #0077b6 0%, #ff2277ff 100%);
+			border-radius: 2px;
+			margin: 20px auto 30px;
+		}
+		.tarifs-intro {
+			font-size: 1.2rem;
+			color: #333;
+			font-family: 'Montserrat', sans-serif;
+			margin-bottom: 40px;
+		}
+		.tarifs-table {
+			margin-bottom: 40px;
+			overflow-x: auto;
+		}
+		.tarifs-table table {
+			width: 100%;
+			border-collapse: collapse;
+			background: #f8f9fa;
+			border-radius: 18px;
+			box-shadow: 0 2px 8px rgba(0, 119, 182, 0.07);
+			font-size: 1.1rem;
+		}
+		.tarifs-table th,
+		.tarifs-table td {
+			padding: 18px 12px;
+			text-align: center;
+		}
+		.tarifs-table th {
+			background: #e3f2fd;
+			color: #0077b6;
+			font-weight: 600;
+			font-size: 1.1rem;
+		}
+		.tarifs-table tr {
+			border-bottom: 1px solid #e3f2fd;
+		}
+		.tarifs-table tr:last-child {
+			border-bottom: none;
+		}
+		.tarifs-details {
+			margin-bottom: 30px;
+			font-size: 1.1rem;
+			color: #333;
+			text-align: left;
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.tarifs-details ul {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 18px;
+		}
+		.tarifs-details li {
+			margin-bottom: 8px;
+		}
+		.btn-reserve {
+			display: inline-block;
+			margin-top: 8px;
+			padding: 12px 32px;
+			background: linear-gradient(90deg, #0077b6 0%, #ff2277ff 100%);
+			color: #fff;
+			border-radius: 24px;
+			font-size: 1.2rem;
+			font-family: 'Montserrat', sans-serif;
+			text-decoration: none;
+			box-shadow: 0 2px 8px rgba(0, 119, 182, 0.07);
+			transition: background 0.3s, transform 0.3s;
+		}
+		.btn-reserve:hover {
+			background: linear-gradient(90deg, #ff2277ff 0%, #0077b6 100%);
+			transform: scale(1.05);
+		}
+		.tarifs-note {
+			margin-top: 24px;
+			font-size: 1rem;
+			color: #555;
+			background: #e3f2fd;
+			border-radius: 12px;
+			padding: 12px 18px;
+			display: inline-block;
+		}
+		.tarifs-note a {
+			color: #ff385c;
+			text-decoration: underline;
+			font-weight: 600;
+		}
+		@media(max-width: 900px) {
+			.tarifs-container {
+				padding: 24px 8px;
+			}
+			.tarifs-table th,
+			.tarifs-table td {
+				padding: 12px 6px;
+				font-size: 1rem;
+			}
+		}
+	</style>
+	{% include 'footer.html.twig' %}
+{% endblock %}

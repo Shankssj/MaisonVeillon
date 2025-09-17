@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!
+{% endblock %}
+
+{% block body %}
+	<section id="contact-info">
+		<div class="contact-container">
+			<h2 class="contact-title">Nous contacter</h2>
+			<div class="trait-design"></div>
+			<p class="contact-intro">
+				Pour toute question, demande de réservation ou renseignement, n’hésitez pas à nous joindre :<br>
+				Nous sommes disponibles et à l’écoute pour rendre votre séjour agréable.
+			</p>
+			<div class="contact-details">
+				<div class="contact-block">
+					<span class="contact-label">Email :</span>
+					<a href="mailto:maison.vacances@exemple.fr" class="contact-link">brems95@hotmail.fr</a>
+				</div>
+				<div class="contact-block">
+					<span class="contact-label">Téléphone :</span>
+					<a href="tel:0612345678" class="contact-link">06 30 10 30 33</a>
+				</div>
+
+				<div class="contact-block">
+					<span class="contact-label">Disponibilité :</span>
+					<span class="contact-link">Tous les jours de 9h à 18h</span>
+				</div>
+			</div>
+			<div class="contact-note">
+				<span>Vous pouvez aussi nous écrire via
+					<a href="https://www.airbnb.fr/rooms/1393523292011290943" target="_blank">Airbnb</a>
+					si vous préférez passer par la plateforme.</span>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		#contact-info {
+			background: linear-gradient(120deg, #e3f2fd 0%, #fafaf8 100%);
+			padding: 60px 0 80px;
+		}
+		.contact-container {
+			max-width: 600px;
+			margin: 0 auto;
+			background: #fff;
+			border-radius: 32px;
+			box-shadow: 0 8px 32px rgba(0, 119, 182, 0.07);
+			padding: 48px 32px;
+			text-align: center;
+		}
+		.contact-title {
+			font-size: 2.5rem;
+			color: #0077b6;
+			font-family: 'Pacifico', cursive;
+			margin-bottom: 10px;
+		}
+		.trait-design {
+			width: 80px;
+			height: 4px;
+			background: linear-gradient(90deg, #0077b6 0%, #ff2277ff 100%);
+			border-radius: 2px;
+			margin: 20px auto 30px;
+		}
+		.contact-intro {
+			font-size: 1.2rem;
+			color: #333;
+			font-family: 'Montserrat', sans-serif;
+			margin-bottom: 40px;
+		}
+		.contact-details {
+			margin-bottom: 30px;
+			text-align: left;
+		}
+		.contact-block {
+			margin-bottom: 18px;
+			font-size: 1.15rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 12px;
+		}
+		.contact-label {
+			font-weight: 600;
+			color: #0077b6;
+			min-width: 110px;
+		}
+		.contact-link {
+			color: #000000ff;
+			font-family: 'Montserrat', sans-serif;
+			text-decoration: none;
+			transition: color 0.2s;
+		}
+		.contact-link:hover {
+			color: #ff2277ff;
+			text-decoration: underline;
+		}
+		.contact-note {
+			margin-top: 24px;
+			font-size: 1rem;
+			color: #555;
+			background: #e3f2fd;
+			border-radius: 12px;
+			padding: 12px 18px;
+			display: inline-block;
+		}
+		.contact-note a {
+			color: #ff385c;
+			text-decoration: underline;
+			font-weight: 600;
+		}
+		@media(max-width: 700px) {
+			.contact-container {
+				padding: 24px 8px;
+			}
+			.contact-block {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 4px;
+			}
+		}
+	</style>
+    {% include 'footer.html.twig' %}
+{% endblock %}

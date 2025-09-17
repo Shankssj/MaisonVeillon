@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activités
+{% endblock %}
+
+{% block body %}
+	<section id="activites">
+		<div class="container">
+			<h3 id="titre_activite">Activités à proximité</h3>
+			<div id="sous_titre">
+				<p>Découvrez les nombreuses activités et attractions à proximité de notre maison de vacances à Talmont Saint Hilaire. Que vous soyez amateur de nature, de culture ou de loisirs en famille, il y en a pour tous les goûts !</p>
+				<div class="trait-design"></div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<h4>Plages de Sable Fin</h4>
+					<img class="img-activite" src="https://cdt85.media.tourinsoft.eu/upload/Veillon.jpg" alt="La plage du veillon">
+					<p>Profitez des plages magnifiques de Talmont Saint Hilaire, idéales pour la baignade, le bronzage et les sports nautiques.</p>
+				</div>
+				<div class="col">
+					<img class="img-activite" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Les_ruines_du_ch%C3%A2teau_fort_de_Talmont.JPG/1200px-Les_ruines_du_ch%C3%A2teau_fort_de_Talmont.JPG" alt=" Château de Talmont Saint Hilaire">
+					<h4>Château de Talmont</h4>
+
+					<p>Explorez ce château médiéval bien préservé et découvrez son histoire fascinante.</p>
+				</div>
+				<div class="col">
+					<h4>Parc Naturel Régional du Marais Poitevin</h4>
+					<img class="img-activite" src="https://www.niortmaraispoitevin.com/app/uploads/2023/05/2h5a5573.webp" alt="Le marais poitevin">
+					<p>Partez en excursion dans ce parc naturel unique, connu sous le nom de "Venise Verte", pour une expérience inoubliable en barque.</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col bas">
+					<h4>O'gliss Park</h4>
+					<img class="img-activite" src="https://www.payssaintgilles-tourisme.fr/wp-content/uploads/wpetourisme/OGLISSPARK-VUEAERIENNE-1-1200x799.jpg" alt="O'gliss Park">
+					<p>Amusez-vous en famille dans ce parc aquatique avec toboggans, piscines à vagues et espaces de détente.</p>
+				</div>
+				<div class="col bas">
+					<img class="img-activite" src="https://static.where-e.com/France/Pays_De_La_Loire/Vendee/Playground-La-Beliere-Loisirs_4da579cf9afc1ccdeadd739a2d917b75.jpg" alt="Parc de la belière loisirs">
+					<h4>La belière loisirs</h4>
+					<p>Découvrez ce parc de loisirs offrant mini-golf, karting, et autres activités pour petits et grands.</p>
+				</div>
+				<div class="col bas">
+					<h4>O'Fun Park</h4>
+					<img class="img-activite" src="https://ofunpark.fr/wp-content/uploads/2022/10/water-jump-15-copie.jpg" alt="O'fun park">
+					<p>Testez votre agilité dans ce parc d'aventures avec parcours accrobranche, tyroliennes, trampolines, Water Jump et structure gonflable sur l'eau.</p>
+				</div>
+			</div>
+
+			<h3 id="titre_activite">Activités incontournable en Vendée</h3>
+			<div id="sous_titre">
+				<p>En plus des activités locales, la Vendée offre une multitude d'expériences uniques à découvrir. Voici quelques incontournables à ne pas manquer lors de votre séjour</p>
+				<div class="trait-design"></div>
+			</div>
+			<div class="row">
+				<div class="col vendee">
+					<h4>Le Puy du Fou</h4>
+					<img class="img-activite" src="https://cdt24.media.tourinsoft.eu/upload/Visuel-Puy-du-Fou-2025-paysage-hd.jpg" alt="Puy du Fou">
+					<p>Vivez une expérience historique immersive avec des spectacles grandioses et des reconstitutions captivantes.</p>
+				</div>
+
+				<div class="col vendee">
+					<h4>L'Île d'Yeu</h4>
+					<img class="img-activite" src="https://www.ile-yeu.fr/sites/iledyeu/files/styles/content_page_showcase_img/public/liaisons_aeriennes_ile_dyeu_c_rodrigue_laurent.jpg?itok=9XqgFF3W" alt="l'Île d'Yeu">
+					<p>Explorez cette île pittoresque avec ses plages, ses sentiers côtiers et son ambiance authentique.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<style>
+		.trait-design {
+			width: 80px;
+			height: 4px;
+			background: linear-gradient(90deg, #0077b6 0%, #ff2277ff 100%);
+			border-radius: 2px;
+			margin: 30px auto 0;
+		}
+		#titre_activite {
+			font-size: 3.5rem;
+			color: #0077b6;
+			font-family: 'Pacifico', cursive;
+			margin-bottom: 20px;
+		}
+		#sous_titre {
+			font-size: 1.5rem;
+			color: #000000ff;
+			font-family: 'monserrat', sans-serif;
+			max-width: 800px;
+			margin: 0 auto 80px;
+
+		}
+		#activites {
+			padding: 60px 20px;
+			background-color: #fafaf8ff;
+			text-align: center;
+			margin-bottom: 80px;
+		}
+		.img-activite {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 10px;
+			margin-bottom: 15px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.col {
+			flex: 1;
+			margin: 0 10px 80px;
+			padding: 20px;
+			background: #ffffff;
+			border-radius: 15px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.col:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		}
+
+		.col.bas {
+			margin-bottom: 150px;
+		}
+		.col.vendee {
+			flex: 0 0 45%;
+			max-width: 65%;
+			min-height: 420px; /* Hauteur minimale identique */
+			margin: 0 10px 80px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+		.col.vendee .img-activite {
+			width: 100%;
+			height: 580px; /* Image plus grande */
+			max-width: 100%;
+			border-radius: 18px;
+			margin-bottom: 18px;
+			box-shadow: 0 6px 16px rgba(0, 119, 182, 0.13);
+			object-fit: cover;
+		}
+
+
+		.row {
+			display: flex;
+			gap: 20px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		.col h4 {
+			font-size: 1.8rem;
+			color: #ff2277ff;
+			font-family: 'Fredoka', sans-serif;
+			margin-bottom: 15px;
+		}
+		.col p {
+			font-size: 1.1rem;
+			color: #000000ff;
+			font-family: 'Montserrat', sans-serif;
+			line-height: 1.6;
+		}
+		@media(max-width: 768px) {
+			.row {
+				flex-direction: column;
+				align-items: center;
+			}
+			.col {
+				max-width: 400px;
+				margin-bottom: 30px;
+			}
+		}
+	</style>
+    {% include 'footer.html.twig' %}
+{% endblock %}
