@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle pièce{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm rounded-3 p-4">
+                <h3 class="card-title text-center mb-4">Créer une nouvelle pièce</h3>
+
+                {{ form_start(form) }}
+
+                {# Champ nom_piece #}
+                <div class="mb-3">
+                    {{ form_label(form.nom_piece, 'Nom de la pièce', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+                    {{ form_widget(form.nom_piece, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.nom_piece) }}
+                </div>
+
+                {# Champ description_piece #}
+                <div class="mb-3">
+                    {{ form_label(form.description_piece, 'Description', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+                    {{ form_widget(form.description_piece, {'attr': {'class': 'form-control', 'rows': 4}}) }}
+                    {{ form_errors(form.description_piece) }}
+                </div>
+
+                {# Gestion des images dynamiques avec aperçu #}
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Images associées</label>
+                    <div class="d-flex flex-wrap gap-3" id="image-container">
+                        <p class="text-muted">Aucune image associée pour cette pièce.</p>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary mt-2" id="add-image-btn">Ajouter un lien d'image</button>
+                </div>
+
+                {# Bouton de soumission #}
+                <div class="text-center">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success mt-3'}}) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    let imageContainer = document.getElementById('image-container');
+    let addImageBtn = document.getElementById('add-image-btn');
+    let imageIndex = 0;
+
+    addImageBtn.addEventListener('click', () => {
+        // Supprimer le message "Aucune image..."
+        let emptyMsg = imageContainer.querySelector('p.text-muted');
+        if (emptyMsg) emptyMsg.remove();
+
+        // Créer un conteneur pour l'image et le champ input
+        let div = document.createElement('div');
+        div.className = 'mb-2 p-2 border rounded d-flex flex-column align-items-center';
+        div.style.width = '200px';
+
+        // Création du champ input
+        let input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'photo_' + imageIndex;
+        input.className = 'form-control mb-2';
+        input.placeholder = 'Lien de l\'image';
+
+        // Création de l'aperçu
+        let imgPreview = document.createElement('img');
+        imgPreview.src = '';
+        imgPreview.alt = 'Aperçu';
+        imgPreview.style.width = '100%';
+        imgPreview.style.borderRadius = '8px';
+        imgPreview.style.display = 'none'; // masqué au départ
+
+        // Mettre à jour l'aperçu à chaque changement de valeur
+        input.addEventListener('input', () => {
+            if (input.value) {
+                imgPreview.src = input.value;
+                imgPreview.style.display = 'block';
+            } else {
+                imgPreview.style.display = 'none';
+                imgPreview.src = '';
+            }
+        });
+
+        div.appendChild(input);
+        div.appendChild(imgPreview);
+        imageContainer.appendChild(div);
+
+        imageIndex++;
+    });
+</script>
+{% endblock %}

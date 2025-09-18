@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de la pièce
+{% endblock %}
+
+{% block body %}
+	<div class="jumbotron text-center">
+		<h1>Détail de la pièce</h1>
+		<p>Informations enregistrées</p>
+	</div>
+
+	<div class="container mt-4">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+
+				<div class="card shadow-lg border-0 rounded-3">
+
+					{% set photos = piece.getPhotos() %}
+					{% if photos is not empty %}
+						<img src="{{ photos[0].getLienPhoto() }}" class="card-img-top img-fluid rounded-top" alt="Image de {{ piece.getNomPiece() }}">
+					{% else %}
+						<img src="{{ asset('images/no-image.png') }}" class="card-img-top img-fluid rounded-top" alt="Pas d'image disponible">
+					{% endif %}
+
+					<div class="card-body text-center">
+						<h4 class="card-title text-primary">{{ piece.getNomPiece() }}</h4>
+						<p class="card-text">
+							<strong>Description :</strong><br>
+							{{ piece.getDescriptionPiece() }}
+						</p>
+					</div>
+
+					<div class="card-footer text-center wrapper-btn">
+						<a href="{{ path('app_newPiece') }}" class="btn btn-success me-2">
+							Ajouter une nouvelle pièce
+						</a>
+						<a href="{{ path('app_deletePiece', {id_piece: piece.getId()}) }}" class="btn btn-danger">
+							Supprimer cette pièce
+						</a>
+						<a href="{{ path('app_editPiece', {id_piece: piece.getId()}) }}" class="btn btn-warning me-2">
+                            Modifier cette pièce
+						</a>
+						<a href="{{ path('accueil') }}" class="btn btn-secondary">
+							Retour à l'accueil
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
