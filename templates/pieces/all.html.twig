@@ -16,17 +16,13 @@
 
 				<div class="col-md-4">
 					<div class="card h-100 shadow-sm border-0">
-						{% if photos is not empty %}
-							<img src="{{ photos[0].getLienPhoto() }}" class="card-img-top" alt="Photo de {{ piece.getNomPiece() }}">
-						{% else %}
-							<img src="{{ asset('images/no-image.png') }}" class="card-img-top" alt="Pas d'image">
-						{% endif %}
 
+						<img src="{{ photos[0].getLienPhoto() }}" class="card-img-top" alt="Photo de {{ piece.getNomPiece() }}">
 						<div class="card-body text-center">
 							<h5 class="card-title text-primary">{{ piece.getNomPiece() }}</h5>
 							<p class="card-text text-muted">
-								{{ piece.getDescriptionPiece()|slice(0, 100) }}
-								{% if piece.getDescriptionPiece()|length > 100 %}...
+								{{ piece.getDescriptionPiece()}}
+								{% if piece.getDescriptionPiece() %}...
 								{% endif %}
 							</p>
 						</div>

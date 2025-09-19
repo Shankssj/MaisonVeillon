@@ -13,36 +13,29 @@
 
 					{{ form_start(form) }}
 
-					{# Champ nom_piece #}
 					<div class="mb-3">
 						{{ form_label(form.nom_piece, 'Nom de la pièce', {'label_attr': {'class': 'form-label fw-bold'}}) }}
 						{{ form_widget(form.nom_piece, {'attr': {'class': 'form-control'}}) }}
-						{{ form_errors(form.nom_piece) }}
+
 					</div>
 
-					{# Champ description_piece #}
 					<div class="mb-3">
 						{{ form_label(form.description_piece, 'Description', {'label_attr': {'class': 'form-label fw-bold'}}) }}
 						{{ form_widget(form.description_piece, {'attr': {'class': 'form-control', 'rows': 4}}) }}
-						{{ form_errors(form.description_piece) }}
 					</div>
 
-					{# Images existantes et édition des liens #}
 					<div class="mb-3">
 						<label class="form-label fw-bold">Images associées</label>
 						<div class="d-flex flex-wrap gap-3">
 							{% for photo in laPiece.getPhotos() %}
 								<div class="mb-2 p-2 border rounded d-flex flex-column align-items-center" style="width: 200px;">
-									<img src="{{ photo.getLienPhoto() }}" alt="Image {{ loop.index }}" class="img-thumbnail mb-2" style="width: 100%; height: auto; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-									<input type="text" class="form-control" name="photo_{{ photo.getId() }}" value="{{ photo.getLienPhoto() }}">
+									<img src="{{ photo.getLienPhoto() }}" class="img-thumbnail mb-2" style="width: 100%; height: auto; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+									<input type="text" class="form-control" value="{{ photo.getLienPhoto() }}">
 								</div>
-							{% else %}
-								<p class="text-muted">Aucune image associée pour cette pièce.</p>
 							{% endfor %}
 						</div>
 					</div>
 
-					{# Bouton de soumission #}
 					<div class="text-center">
 						{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary mt-3'}}) }}
 					</div>

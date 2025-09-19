@@ -16,11 +16,8 @@
 				<div class="card shadow-lg border-0 rounded-3">
 
 					{% set photos = piece.getPhotos() %}
-					{% if photos is not empty %}
-						<img src="{{ photos[0].getLienPhoto() }}" class="card-img-top img-fluid rounded-top" alt="Image de {{ piece.getNomPiece() }}">
-					{% else %}
-						<img src="{{ asset('images/no-image.png') }}" class="card-img-top img-fluid rounded-top" alt="Pas d'image disponible">
-					{% endif %}
+
+					<img src="{{ photos[0].getLienPhoto() }}" class="card-img-top img-fluid rounded-top" >
 
 					<div class="card-body text-center">
 						<h4 class="card-title text-primary">{{ piece.getNomPiece() }}</h4>
@@ -38,7 +35,7 @@
 							Supprimer cette pièce
 						</a>
 						<a href="{{ path('app_editPiece', {id_piece: piece.getId()}) }}" class="btn btn-warning me-2">
-                            Modifier cette pièce
+							Modifier cette pièce
 						</a>
 						<a href="{{ path('accueil') }}" class="btn btn-secondary">
 							Retour à l'accueil

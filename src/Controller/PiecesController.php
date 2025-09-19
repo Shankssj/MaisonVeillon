@@ -35,7 +35,7 @@ class PiecesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($piece);
 
-            // Récupérer tous les inputs commençant par "photo_"
+           
             foreach ($request->request->all() as $key => $value) {
                 if (str_starts_with($key, 'photo_') && $value) {
                     $photo = new Photo();
@@ -47,8 +47,6 @@ class PiecesController extends AbstractController
             }
 
             $em->flush();
-
-            $this->addFlash('success', 'Nouvelle pièce créée avec succès !');
             return $this->redirectToRoute('app_allPieces');
         }
 
@@ -66,16 +64,11 @@ class PiecesController extends AbstractController
     {
         $piece = $em->getRepository(Pieces::class)->find($id_piece);
 
-        if (!$piece) {
-            throw $this->createNotFoundException(
-                'Aucune pièce pour l\'id: ' . $id_piece
-            );
-        }
-
         return $this->render('pieces/view.html.twig', [
             'piece' => $piece
         ]);
     }
+
     #[Route('/all', name: 'app_allPieces')]
     public function viewAll(EntityManagerInterface $em): Response
     {
@@ -96,8 +89,6 @@ class PiecesController extends AbstractController
         $em->remove($piece);
         $em->flush();
 
-        $this->addFlash('success', 'Pièce supprimé avec succès !');
-
         return $this->redirectToRoute('app_allPieces');
     }
 
@@ -107,14 +98,12 @@ class PiecesController extends AbstractController
 
         $piece = $em->getRepository(Pieces::class)->find($id_piece);
 
-        if (!$piece) {
-            throw $this->createNotFoundException('Aucune pièce trouvée avec l\'id : ' . $id_piece);
-        }
+
 
         $form = $this->createFormBuilder($piece)
             ->add('nom_piece', TextType::class, ['label' => 'Titre'])
             ->add('description_piece', TextareaType::class, ['label' => 'Description'])
-            ->add('save', SubmitType::class, ['label' => 'Éditer', 'attr' => ['class' => 'btn btn-primary mt-3']])
+            ->add('save', SubmitType::class, ['label' => 'Modifier', 'attr' => ['class' => 'btn btn-primary mt-3']])
             ->getForm();
 
         $form->handleRequest($request);
@@ -130,12 +119,9 @@ class PiecesController extends AbstractController
 
             $em->flush();
 
-            $this->addFlash('success', 'Pièce mise à jour avec succès !');
-
             return $this->redirectToRoute('app_allPieces');
         }
 
-        // Rendu du formulaire
         return $this->render('pieces/edit.html.twig', [
             'form' => $form->createView(),
             'laPiece' => $piece,

@@ -161,7 +161,6 @@
 					<div class="card">
 						<div class="card-imgs carousel" data-piece="{{ loop.index }}">
 							{% set photos = piece.getPhotos() %}
-							{% if photos|length > 0 %}
 								<img class="card-img" src="{{ photos[0].getLienPhoto() }}" alt="Photo de {{ piece.getNomPiece() }}">
 								<div class="carousel-controls">
 									<button class="carousel-btn prev" data-piece="{{ loop.index }}" aria-label="Précédent">
@@ -174,7 +173,6 @@
 										<span>&#10095;</span>
 									</button>
 								</div>
-							{% endif %}
 						</div>
 						<div class="card-details">
 							<h4 class="card-title">{{ piece.getNomPiece() }}</h4>
@@ -190,7 +188,7 @@
 	</section>
 	<style>
 
-		/* Section background-home */
+	/* Section background-home */
 		.trait-design {
 			width: 80px;
 			height: 4px;
@@ -198,6 +196,7 @@
 			border-radius: 2px;
 			margin: 20px auto 30px;
 		}
+		
 		.background-home {
 			position: relative;
 			width: 100%;
@@ -244,7 +243,7 @@
 				transform: translateX(-50%) translateY(15px);
 			}
 		}
-		/* Fin Section background-home */
+	/* Fin Section background-home */
 
 	/* Section presentation */
 		.row {
@@ -253,7 +252,6 @@
 			gap: 40px;
 			margin-bottom: 80px;
 		}
-		/* --- Section Présentation --- */
 		#presentation {
 			padding: 80px 20px;
 			background: #f7f9fb;
@@ -328,13 +326,13 @@
 
 		@media(max-width: 1024px) {
 			.amenities-grid {
-				grid-template-columns: repeat(2, 1fr); /* 2 items par ligne sur tablette */
+				grid-template-columns: repeat(2, 1fr); 
 			}
 		}
 
 		@media(max-width: 600px) {
 			.amenities-grid {
-				grid-template-columns: 1fr; /* 1 item par ligne sur mobile */
+				grid-template-columns: 1fr; 
 			}
 		}
 
@@ -452,7 +450,7 @@
 
 	/* Fin Section presentation */
 
-		/* Section Détails maison */
+	/* Section Détails maison */
 		#detail-maison {
 			padding: 60px 20px;
 			background-color: #ffffff;
@@ -606,7 +604,7 @@
 				margin-bottom: 24px;
 			}
 		}
-		/* Fin Section Détails maison */
+	/* Fin Section Détails maison */
 	</style>
 
 	 <script>
@@ -651,6 +649,6 @@
 																					        }
 																					    });
 																					});
-																	</script>
+	</script>
 	{% include 'footer.html.twig' %}
 {% endblock %}
